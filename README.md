@@ -1,5 +1,5 @@
 # sushiku
 Back-end website using NodeJS, ExpressJS., MySQL  and Sequelize
 
-##Usage
+## Usage
 Type npm start
