@@ -1,0 +1,26 @@
+<!-- /views/pages/index.ejs -->
+
+<!DOCTYPE html>
+<html lang="en-US">
+  <!-- including /partials/head -->
+  <%- include('../partials/head') %>
+
+  <body>
+    <!-- including navbar -->
+    <%- include('../partials/nav') %>
+
+    <!-- section -->
+    <section class="jumbotron p-5 mb-4 text-center d-flex align-items-center">
+      <div class="container-fluid py-5">
+        <h1 class="bg-text display-3 fw-light">SUSHIKU Presents</h1>
+        <p class="bg-text fs-4 lead text-muted">
+          Using EJS templating with Node.JS
+        </p>
+      </div>
+    </section>
+    <!-- section -->
+
+    <!-- including food menu -->
+    <%- include('../partials/3columns'); %> <%- include('../partials/footer') %>
+  </body>
+</html>

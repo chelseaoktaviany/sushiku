@@ -1,0 +1,57 @@
+//connect model
+const User = require("../models/user");
+
+const flash = require("connect-flash");
+
+// homepage (index) (GET)
+const home = function (req, res) {
+  res.render("pages/index", {
+    title: "SUSHIKU - Home",
+  });
+};
+
+//signin page (GET)
+const signIn = function (req, res) {
+  res.render("pages/signin", {
+    title: "SUSHIKU - Sign In",
+  });
+};
+
+//register page (GET)
+const registerForm = function (req, res) {
+  res.render("pages/register", {
+    title: "SUSHIKU - Register",
+    sessionFlash: res.locals.sessionFlash,
+  });
+};
+
+//saving user (POST)
+const registerUser = function (req, res) {
+  //validate user input
+  const { name, email, password } = req.body;
+
+  //creating a user
+  const user = User.create({
+    name,
+    email,
+    password,
+  }).catch((error) => console.log(error));
+
+  //success message
+  req.session.sessionFlash = {
+    type: "success",
+    messageType: "Success!",
+    message: "Thank you! Your account has been registered successfully",
+  };
+
+  console.log(user);
+
+  res.redirect("/register?=success");
+};
+
+module.exports = {
+  home,
+  signIn,
+  registerForm,
+  registerUser,
+};

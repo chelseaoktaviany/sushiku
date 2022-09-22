@@ -1,0 +1,138 @@
+<!-- /views/pages/register.ejs -->
+
+<!DOCTYPE html>
+<html lang="en-US">
+  <!-- including /partials/head -->
+  <%- include('../../views/partials/head') %>
+
+  <body>
+    <!-- including navbar -->
+    <%- include('../../views/partials/nav') %>
+
+    <!-- section -->
+    <section class="p-5 mt-5 mb-2">
+      <!--container-->
+      <div
+        class="form-container container mt-5 d-flex justify-content-center align-items-center col-sm"
+      >
+        <!--form-->
+        <form
+          action="/register"
+          method="POST"
+          class="signin-form row mt-3 px-2 py-5 d-flex justify-content-center align-items-center"
+        >
+          <h2
+            class="mt-4 bg-text fw-bold text-left d-flex justify-content-center align-items-center"
+          >
+            Register
+          </h2>
+
+          <!-- message -->
+          <% if( sessionFlash && sessionFlash.message ) { %>
+          <div
+            class="alert alert-<%= sessionFlash.type %> alert-dismissible fade show col-sm-8 mt-4 p-1 text-center"
+            role="alert"
+            id="registerAlert"
+          >
+            <p class="p-1 m-2">
+              <strong><%= sessionFlash.messageType %></strong> <%=
+              sessionFlash.message %>
+            </p>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="alert"
+              aria-label="Close"
+            ></button>
+          </div>
+          <% } %>
+          <!-- message -->
+
+          <!--row-->
+          <div
+            class="row mt-3 g-3 d-flex justify-content-center align-items-center"
+          >
+            <div class="col-md-6 mb-1">
+              <label for="exampleFormControlInput1" class="form-label"
+                >Name:</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="exampleFormControlInput1
+                "
+                name="name"
+                placeholder="Your name.."
+              />
+            </div>
+          </div>
+          <!--row-->
+
+          <!--row-->
+          <div class="row g-3 d-flex justify-content-center align-items-center">
+            <div class="col-md-6 mb-1">
+              <label for="exampleFormControlInput1" class="form-label"
+                >Email address:</label
+              >
+              <input
+                type="email"
+                class="form-control"
+                id="exampleFormControlInput1
+                "
+                name="email"
+                placeholder="Your email address.."
+              />
+            </div>
+          </div>
+          <!--row-->
+
+          <!--row-->
+          <div class="row g-3 d-flex justify-content-center align-items-center">
+            <div class="col-md-6 mb-3">
+              <label for="exampleFormControlInput1" class="form-label"
+                >Password:</label
+              >
+              <input
+                type="password"
+                class="form-control"
+                id="exampleFormControlInput1"
+                name="password"
+                placeholder="Your password.."
+              />
+            </div>
+          </div>
+          <!--row-->
+
+          <!--row-->
+          <div class="row d-flex justify-content-center">
+            <button
+              type="submit"
+              class="btn btn-primary mt-4 mb-2 col-md-6 p-2"
+            >
+              Register
+            </button>
+          </div>
+          <!--row-->
+
+          <!--row-->
+          <div class="row d-flex justify-content-center">
+            <div class="col-md-6 d-flex justify-content-center mt-4">
+              <p>
+                Are you a member?
+                <a href="/signin" class="link-primary">Sign in</a>
+              </p>
+            </div>
+          </div>
+        </form>
+      </div>
+      <!--container-->
+    </section>
+    <!-- section -->
+
+    <!--script-->
+    <script></script>
+
+    <!-- including footer -->
+    <%- include('../../views/partials/footer') %>
+  </body>
+</html>
