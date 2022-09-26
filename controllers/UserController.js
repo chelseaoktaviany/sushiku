@@ -1,8 +1,6 @@
 //connect model
 const User = require("../models/user");
 
-const bcrypt = require("bcrypt");
-
 const flash = require("connect-flash");
 
 // homepage (index) (GET)
@@ -47,7 +45,9 @@ const registerUser = async function (req, res) {
     name,
     email,
     password,
-  }).catch((error) => console.log(error));
+  })
+    .then((user) => res.json(user))
+    .catch((error) => console.log(error));
 
   //success message
   req.session.sessionFlash = {
@@ -55,7 +55,10 @@ const registerUser = async function (req, res) {
     messageType: "Success!",
     message: "Thank you! Your account has been registered successfully",
   };
+
   console.log(user);
+
+  //redirecting to register page successfully
   res.redirect("/register?=success");
 };
 

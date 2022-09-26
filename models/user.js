@@ -33,9 +33,6 @@ module.exports = db.define(
     password: {
       type: Sequelize.STRING(64),
       allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
     },
   },
   {

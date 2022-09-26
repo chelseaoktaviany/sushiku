@@ -1,8 +1,10 @@
-const { check, validationResult } = require("express-validator");
+const { body, check, validationResult } = require("express-validator");
 
 const flash = require("connect-flash");
 
 exports.validateUser = [
+  body("email").isEmail(),
+  body("password").isLength({ max: 64 }),
   check("name")
     .trim()
     .escape()
