@@ -45,9 +45,7 @@ const registerUser = async function (req, res) {
     name,
     email,
     password,
-  })
-    .then((user) => res.json(user))
-    .catch((error) => console.log(error));
+  }).catch((error) => console.log(error));
 
   //success message
   req.session.sessionFlash = {
