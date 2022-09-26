@@ -23,10 +23,4 @@ router.get("/register", userController.registerForm);
 //save user (POST)
 router.route("/register").post(validateUser, userController.registerUser);
 
-// router.post(
-//   "/register",
-//   userValidator.registerUser,
-//   userController.registerUser
-// );
-
 module.exports = router;

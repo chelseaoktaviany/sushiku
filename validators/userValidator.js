@@ -30,17 +30,17 @@ exports.validateUser = [
       req.session.sessionFlash = {
         type: "danger",
         messageType: "Warning!",
-        message: "Name or email address must be provided",
+        message: "Please fill the following fields",
       };
       res.redirect("/register?=failedEmptyField");
-    }
-    // } else if (!errors.exists()) {
+    } //else if (!errors.exists()) {
     //danger message
     //   req.session.sessionFlash = {
     //     type: "danger",
     //     messageType: "Warning!",
-    //     message: "Name or email address is already taken",
+    //     message: "A user with that email or name is already taken",
     //   };
+    //   res.redirect("/register?=failedUserTaken");
     // }
     next();
   },
