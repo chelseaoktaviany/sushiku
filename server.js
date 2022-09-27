@@ -8,6 +8,9 @@ const session = require("express-session");
 const cookieParser = require("cookie-parser");
 const flash = require("connect-flash");
 
+//set the localhost
+const hostname = "localhost";
+
 //set the default env port
 const port = process.env.PORT || 3000;
 
@@ -57,5 +60,5 @@ app.use("/", routes);
 
 //start the server
 app.listen(port, function () {
-  console.log(`Server is listening on port ${port}...`);
+  console.log(`Server is listening on http://${hostname}:${port}/...`);
 });
