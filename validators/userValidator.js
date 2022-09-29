@@ -1,30 +1,16 @@
-const { body, check, validationResult } = require("express-validator");
+const { check, validationResult } = require("express-validator");
 
 const flash = require("connect-flash");
 
 exports.validateUser = [
-  body("email").isEmail(),
-  body("password").isLength({ max: 64 }),
-  check("name")
-    .trim()
-    .escape()
-    .not()
-    .isEmpty()
-    .withMessage("Username cannot be empty!")
-    .bail()
+  check("name", "This username must have at least 3 characters long")
     .exists()
-    .withMessage("Username is already taken!")
-    .bail(),
-  check("email")
-    .trim()
-    .escape()
-    .not()
-    .isEmpty()
-    .withMessage("Invalid email address!")
-    .bail()
+    .isLength({ min: 3 }),
+  check("email", "Email is not valid")
+    .isEmail()
+    .normalizeEmail()
     .exists()
-    .withMessage("E-mail address is already in use!")
-    .bail(),
+    .withMessage("E-mail address is already in use!"),
   (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -44,6 +30,6 @@ exports.validateUser = [
     //   };
     //   res.redirect("/register?=failedUserTaken");
     // }
-    next();
+    // next();
   },
 ];
