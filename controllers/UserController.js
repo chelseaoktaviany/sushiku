@@ -1,6 +1,8 @@
 //connect model
 const User = require("../models/user");
 
+const { validationResult } = require("express-validator");
+
 const flash = require("connect-flash");
 
 // homepage (index) (GET)
@@ -30,34 +32,35 @@ const registerUser = async function (req, res) {
   //validate user input
   const { name, email, password } = req.body;
 
-  // if (!name || !email || !password) {
-  //danger message
-  //   req.session.sessionFlash = {
-  //     type: "danger",
-  //     messageType: "Warning!",
-  //     message: "Please fill the following fields",
-  //   };
-  //   res.redirect("/register?=failedEmptyField");
-  // }
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    //danger message
+    req.session.sessionFlash = {
+      type: "danger",
+      messageType: "Warning!",
+      message: "Please fill the following fields",
+    };
+    res.redirect("/register?=failedEmptyField");
+  } else {
+    //creating a user
+    const user = User.create({
+      name,
+      email,
+      password,
+    }).catch((error) => console.log(error));
 
-  //creating a user
-  const user = User.create({
-    name,
-    email,
-    password,
-  }).catch((error) => console.log(error));
+    //success message
+    req.session.sessionFlash = {
+      type: "success",
+      messageType: "Success!",
+      message: "Thank you! Your account has been registered successfully",
+    };
 
-  //success message
-  req.session.sessionFlash = {
-    type: "success",
-    messageType: "Success!",
-    message: "Thank you! Your account has been registered successfully",
-  };
+    console.log(user);
 
-  console.log(user);
-
-  //redirecting to register page successfully
-  res.redirect("/register?=success");
+    //redirecting to register page successfully
+    res.redirect("/register?=success");
+  }
 };
 
 module.exports = {
