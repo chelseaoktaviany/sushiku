@@ -27,6 +27,13 @@ const registerForm = async function (req, res) {
   });
 };
 
+//forgottenpassword page (GET)
+const forgottenPass = async function (req, res) {
+  await res.render("pages/forgottenpassword", {
+    title: "SUSHIKU - Forget Password",
+  });
+};
+
 //saving user (POST)
 const registerUser = async function (req, res) {
   //validate user input
@@ -68,4 +75,5 @@ module.exports = {
   signIn,
   registerForm,
   registerUser,
+  forgottenPass,
 };
