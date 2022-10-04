@@ -20,6 +20,9 @@ router.get("/signin", userController.signIn);
 //register page (GET)
 router.get("/register", userController.registerForm);
 
+//forgottenpassword page (GET)
+router.get("/forgottenpassword", userController.forgottenPass);
+
 //save user (POST)
 router.route("/register").post(validateUser, userController.registerUser);
 
