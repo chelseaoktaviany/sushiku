@@ -5,6 +5,21 @@ const { validationResult } = require("express-validator");
 
 const flash = require("connect-flash");
 
+//function send email
+/*
+  function sendEmail(email, token) {
+    var email = email;
+    var token = token;
+
+    var email = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        
+      }
+    });
+  }  
+*/
+
 // homepage (index) (GET)
 const home = async function (req, res) {
   await res.render("pages/index", {
@@ -70,10 +85,42 @@ const registerUser = async function (req, res) {
   }
 };
 
+//resetpasswordemail (POST)
+const resetPassEmail = async function (req, res) {
+  //validate user input
+  const { email } = req.body;
+
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    //danger message
+    req.session.sessionFlash = {
+      type: "danger",
+      messageType: "Warning!",
+      message: "Please provide your email",
+    };
+    res.redirect("/forgottenpassword?=failedEmptyField");
+  } else {
+    //function sending an email for the link
+
+    //success message
+    req.session.sessionFlash = {
+      type: "success",
+      messageType: "Success!",
+      message: "You have sent email for the reset password link.",
+    };
+
+    console.log("test password");
+
+    //redirecting to register page successfully
+    res.redirect("/forgottenpassword?=success");
+  }
+};
+
 module.exports = {
   home,
   signIn,
   registerForm,
-  registerUser,
   forgottenPass,
+  registerUser,
+  resetPassEmail,
 };
