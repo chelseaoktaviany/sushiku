@@ -13,7 +13,7 @@ const flash = require("connect-flash");
 const hostname = "localhost";
 
 //set the default env port
-const port = process.env.PORT || 3000;
+const port = process.env.PORT;
 
 //using routes
 const routes = require("./routes/index.js");
