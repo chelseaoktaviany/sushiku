@@ -26,4 +26,9 @@ router.get("/forgottenpassword", userController.forgottenPass);
 //save user (POST)
 router.route("/register").post(validateUser, userController.registerUser);
 
+//reset password (POST)
+router
+  .route("/resetpasswordemail")
+  .post(validateUser, userController.resetPassEmail);
+
 module.exports = router;
