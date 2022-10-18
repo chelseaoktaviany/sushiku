@@ -1,6 +1,7 @@
 "use strict";
 
 //get all the tool we need
+require("dotenv").config();
 const express = require("express");
 const expressValidator = require("express-validator");
 const bodyParser = require("body-parser");
